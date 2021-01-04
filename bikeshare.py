@@ -37,7 +37,6 @@ def get_filters():
             continue
 
     # get user input for month (all, january, february, ... , june)
-    # get user input for day of week (all, monday, tuesday, ... sunday)
 
     while is_filter not in ['Month', 'Day', 'None']:
         is_filter = input("Would you like to filter the data by month, day, or not at all? Type 'Month', 'Day' or 'None': ").title()
@@ -58,6 +57,7 @@ def get_filters():
                         print('Invalid input. Please type one of the following: 1, 2, 3, 4, 5 or 6: \n')
                         continue
 
+    # get user input for day of week (all, monday, tuesday, ... sunday)
             elif is_filter == 'Day':
                 month = '0'
                 while day not in ['0', '1', '2', '3', '4', '5', '6']:
@@ -107,7 +107,6 @@ def load_data(city, month, day):
     if int(day) < 8:
         df = df[df['Day'] == int(day)]
 
-    # could also filter by both, month and day, but I believe this has not been asked for
     return df
 
 
