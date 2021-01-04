@@ -226,6 +226,8 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
+        # Remove unneeded columns
+        
         try:
             df.pop('gender_m')
             df.pop('gender_f')
