@@ -23,12 +23,14 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
 
     # set all variables to empty strings
+    
     city = ''
     month = ''
     day = ''
     is_filter = ''
 
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
     while city not in ['Washington', 'Chicago', 'New York City']:
         city = input("Would you like to see data for Chicago, New York City or Washington? ").title()
 
@@ -37,6 +39,7 @@ def get_filters():
             continue
 
     # get user input for month (all, january, february, ... , june)
+
     # get user input for day of week (all, monday, tuesday, ... sunday)
 
     while is_filter not in ['Month', 'Day', 'None']:
@@ -116,7 +119,7 @@ def load_data(city, month, day):
         df = df[df['Day'] == int(day)]
 
     # could also filter by both, month and day, but I believe this has not been asked for
-    
+
     return df
 
 
