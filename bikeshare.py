@@ -23,12 +23,14 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
 
     # set all variables to empty strings
+
     city = ''
     month = ''
     day = ''
     is_filter = ''
 
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
     while city not in ['Washington', 'Chicago', 'New York City']:
         city = input("Would you like to see data for Chicago, New York City or Washington? ").title()
 
@@ -38,10 +40,13 @@ def get_filters():
 
     # get user input for month (all, january, february, ... , june)
 
+    # get user input for day of week (all, monday, tuesday, ... sunday)
+
     while is_filter not in ['Month', 'Day', 'None']:
         is_filter = input("Would you like to filter the data by month, day, or not at all? Type 'Month', 'Day' or 'None': ").title()
 
     # while user provides a wrong input, ask him again and display an clarifying message
+
         if is_filter not in ['Month', 'Day', 'None']:
             print('Invalid input. Please type "Month", "Day" or "None". \n')
             continue
@@ -53,6 +58,7 @@ def get_filters():
                     month = input("Which month? Please enter a number from 1 to 6, where 1 = January, ..., 6 = June: ").title()
 
     # while user provides a wrong input, ask him again and display an clarifying message
+
                     if month not in ['1', '2', '3', '4', '5', '6']:
                         print('Invalid input. Please type one of the following: 1, 2, 3, 4, 5 or 6: \n')
                         continue
@@ -64,6 +70,7 @@ def get_filters():
                     day = input("Which day? Type in a number between 0 and 6 with Monday=0, Sunday=6. ").title()
 
     # while user provides a wrong input, ask him again and display an clarifying message
+
                     if day not in ['0', '1', '2', '3', '4', '5', '6']:
                         print('Invalid input. Please type one of the following: 0, 1, 2, 3, 4, 5 or 6. \n')
                         continue
@@ -89,23 +96,30 @@ def load_data(city, month, day):
     """
 
     # load the correct csv
+
     df = pd.read_csv(CITY_DATA[city.lower()])
 
     # transform the columns 'Start Time' and 'End Time' into datetime format
+
     df['Start Time'] = pd.to_datetime(df['Start Time'], format='%Y-%m-%d %H:%M:%S')
     df['End Time'] = pd.to_datetime(df['End Time'], format='%Y-%m-%d %H:%M:%S')
 
     # add two columns for month and day of the trip, as seen by the start time
+
     df.insert(1, 'Month', df['Start Time'].dt.month)
     df.insert(2, 'Day', df['Start Time'].dt.weekday)
 
     # filter by month
+
     if int(month) > 0:
         df = df[df['Month'] == int(month)]
 
     # filter by day
+
     if int(day) < 8:
         df = df[df['Day'] == int(day)]
+
+    # could also filter by both, month and day, but I believe this has not been asked for
 
     return df
 
@@ -226,8 +240,8 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        # Remove unneeded columns
-        
+# Remove unneeded columns
+
         try:
             df.pop('gender_m')
             df.pop('gender_f')
