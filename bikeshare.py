@@ -23,7 +23,7 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
 
     # set all variables to empty strings
-    
+
     city = ''
     month = ''
     day = ''
@@ -238,6 +238,8 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+
+# Remove unneeded columns
 
         try:
             df.pop('gender_m')
